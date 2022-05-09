@@ -1,0 +1,98 @@
+
+from tkinter import *
+from functools import partial
+win = Tk()
+win.geometry("400x300")
+win.title("toonii mashin")
+
+e = Entry(win)
+e.place(x=100, y=20)
+def clicked(num):
+    current=e.get()
+    e.delete(0, "end")
+    e.insert(0, str(current)+str(num))
+b1 = Button(win, text='1', width=10, height=2,bg="white",command=partial(clicked, 1))
+b1.place(x=0, y=40)
+
+b2 = Button(win, text='2', width=10, height=2, bg="white",command=partial(clicked, 2))
+b2.place(x=80, y=40)
+
+b3 = Button(win, text='3', width=10, height=2, bg="white",command=partial(clicked, 3))
+b3.place(x=160, y=40)
+
+b2 = Button(win, text='4', width=10, height=2, bg="white",command=partial(clicked, 4))
+b2.place(x=0, y=80)
+
+
+b2 = Button(win, text='5', width=10, height=2, bg="white",command=partial(clicked, 5))
+b2.place(x=80, y=80)
+
+b2 = Button(win, text='6', width=10, height=2, bg="white",command=partial(clicked, 6))
+b2.place(x=160, y=80)
+
+b2 = Button(win, text='7', width=10, height=2, bg="white",command=partial(clicked, 7))
+b2.place(x=0, y=120)
+
+b2 = Button(win, text='8', width=10, height=2, bg="white",command=partial(clicked, 8))
+b2.place(x=80, y=120)
+
+b2 = Button(win, text='9', width=10, height=2, bg="white",command=partial(clicked, 9))
+b2.place(x=160, y=120)
+
+b2 = Button(win, text='0', width=10, height=2, bg="white",command=partial(clicked, 0))
+b2.place(x=80, y=160)
+
+def operation(var):
+    firstN = e.get()
+    global f_num
+    global math
+    math = var
+    f_num = float(firstN)
+    e.delete(0, "end")
+
+b2 = Button(win, text='+', width=10, height=2, bg="white",command=partial(operation, '+'))
+b2.place(x=240, y=40)
+
+b2 = Button(win, text='-', width=10, height=2, bg="white",command=partial(operation, '-'))
+b2.place(x=240, y=80)
+
+
+b2 = Button(win, text='x', width=10, height=2, bg="white",command=partial(operation, 'x'))
+b2.place(x=240, y=120)
+
+b2 = Button(win, text='/', width=10, height=2, bg="white",command=partial(operation, '/'))
+b2.place(x=240, y=160)
+
+b2 = Button(win, text='=', width=10, height=2, bg="white",command=partial(operation, '='))
+b2.place(x=240, y=0)
+
+
+def clear():
+    e.delete(0,"end")
+b2 = Button(win, text='C', width=10, height=2, bg="white", command=clear)
+b2.place(x=0, y=0)
+
+b2 = Button(win, text='.', width=10, height=2, bg="white",command=partial(clicked, "." ))
+b2.place(x=0, y=160)
+
+
+b2 = Button(win, text=' ', width=10, height=2, bg="white")
+b2.place(x=160, y=160)
+
+
+def equal():
+ secondN=e.get()
+ e.delete(0,"end") 
+ if (math == '/'):
+  e.insert(0, f_num / float(secondN))
+ if (math == '+'):
+  e.insert(0, f_num + float(secondN))
+ if (math == '-'):
+  e.insert(0, f_num - float(secondN))
+ if (math == 'x'):
+  e.insert(0, f_num * float(secondN))
+
+bEql = Button(win,text='=', width=10, height=2, bg="white", command=equal)
+bEql.place(x=240, y=0)
+
+win.mainloop()
